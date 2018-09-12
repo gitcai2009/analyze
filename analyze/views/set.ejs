@@ -1,0 +1,72 @@
+<%- include('header') %>
+<div class="now">
+    <ul>
+        <li><a href="/plat">首页</a></li>
+        <li><a href="/set">添加页</a></li>
+        <li><a href="/set/remove">删除页</a></li>
+    </ul>
+</div>
+
+<div id="form1"  class="setting-form">
+    <div class="setting-deletes"><img src="/images/delete.png"></div>
+    <div class="setting-main" >
+        <div class="setting-top">
+            <h1>添加放置点</h1>
+            <form name="form1" method="post" action="/set/add-place">
+                <input type="text" name="placename" placeholder="填写放置点名称" required="required">
+                <div>
+                    <input placeholder="定位失败" id="location" type="text" disabled>
+                    选择区域:
+                    <select name="area">
+                        <% areas.forEach(function (area){ %>
+                        <option value="<%= area._id %>"><%= area.areaname %></option>
+                        <% }) %>
+                    </select>
+                    <input id="coordinate" type="hidden" name="coord" value="" />
+                </div>
+                <textarea name="comment" placeholder="填写备注" required="required"></textarea>
+                <input type="submit" class="button" value="添加">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="form2"  class="setting-form">
+    <div class="setting-deletes"><img src="/images/delete.png"></div>
+    <div class="setting-main">
+        <div class="setting-top">
+            <h1>添加机器</h1>
+            <form name="form2" method="post" action="/set/add-machine">
+                <input type="text" name="name" placeholder="填写机器名称" required="required">
+                <input type="text" name="machineNo" placeholder="填写机器编号" required="required">
+                起始金额:
+                <input type="number" name="initialNo" placeholder="0" required="required">
+                <input type="submit" value="添加">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="subject">
+    <div id="subject-div1">
+        <div class="diva">
+            <div class="subject-top">
+                <img src="/images/dian.png">
+                <h2 style="color: #fff6f9;margin:0">添加放置点</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="subject-div2">
+        <div class="diva">
+            <div class="subject-top">
+                <img src="/images/youxi.png">
+                <h2 style="color: #fff6f9;margin:0">添加机器</h2>
+            </div>
+        </div>
+    </div >
+
+</div>
+
+<%- include('components/addJS') %>
+<%- include('footer') %>

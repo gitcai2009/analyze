@@ -1,0 +1,68 @@
+<%- include('header') %>
+<div class="now">
+    <ul>
+        <li><a href="/plat">首页</a></li>
+        <li><a href="/set">添加页</a></li>
+        <li><a href="/set/remove">删除页</a></li>
+    </ul>
+</div>
+
+<div id="form2"  class="setting-form">
+    <div class="setting-deletes"><img src="/images/delete.png"></div>
+    <div class="setting-main" >
+        <div class="setting-top">
+            <h1>删除机器</h1>
+            <form name="form1" method="get" action="/set/remove-machine">
+                <span>填写要删除的机器编号:</span>
+                <input class="browsers" list="browsers" name="machineNo">
+                <datalist id="browsers">
+                    <% machines.forEach(function (machines){ %>
+                    <option value="<%= machines.machineNo %>">
+                    <% }) %>
+                </datalist>
+                <input type="submit" value="删除">
+            </form>
+        </div>
+    </div>
+</div>
+<div id="form1"  class="setting-form">
+    <div class="setting-deletes"><img src="/images/delete.png"></div>
+    <div class="setting-main">
+        <div class="setting-top">
+            <h1>删除区域</h1>
+            <form name="form2" method="get" action="/set/remove-area">
+                选择要删除的区域:
+                <select name="area">
+                    <% areas.forEach(function (area){ %>
+                    <option value="<%= area._id %>"><%= area.areaname %></option>
+                    <% }) %>
+                </select>
+                <input type="submit" value="删除">
+            </form>
+            <br>
+            <p style="text-align: center; color: #f64742">*请先确认该区域中的机器都已回收</p>
+        </div>
+    </div>
+</div>
+
+<div class="subject">
+    <div id="subject-div1" style="background-color: rgba(135,105,193,0.67)">
+        <div class="diva">
+            <div class="subject-top">
+                <img src="/images/qu.png">
+                <h2 style="color: #fff6f9;margin:0">删除区域</h2>
+            </div>
+        </div>
+    </div >
+
+    <div id="subject-div2" style="background-color: rgb(64,204,186)">
+        <div class="diva">
+            <div class="subject-top">
+                <img src="/images/youxi.png">
+                <h2 style="color: #fff6f9;margin:0">删除机器</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('components/addJS') %>
+<%- include('footer') %>

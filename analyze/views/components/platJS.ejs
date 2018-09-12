@@ -1,0 +1,79 @@
+<script type="text/javascript">
+    var place = JSON.parse('<%- JSON.stringify(places)%>');
+    var map = new AMap.Map('container', {
+        zoom:9,
+        center: [109.8, 19.1],
+        viewMode:'2D',//使用2D视图
+        resizeEnable: true//是否监控地图容器尺寸变化
+    });
+
+
+    map.plugin(["AMap.Geolocation"],function(){
+        let geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,
+            buttonOffset: new AMap.Pixel(10, 70),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,  //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            buttonPosition:'RB'
+        });
+        map.addControl(geolocation);
+    });
+
+
+    var icon = new AMap.Icon({
+        size: new AMap.Size(25,25),
+        imageSize: new AMap.Size(8, 8),
+        image:'/images/mass1.png'
+    });
+
+    var infoWindow = new AMap.InfoWindow({
+        offset: new AMap.Pixel(5, -5)
+//        closeWhenClickMap:true
+    });
+    for (var i =0;i<place.length;i++) {
+            var marker = new AMap.Marker({
+                map:map,
+                position:place[i].coord,
+                title: place[i].name,
+                icon: icon,
+                offset:{x:0,y:-8}
+            });
+            marker.content = '名称:' + place[i].name+ '<br/>'+
+                '欠款:' + place[i].arrears+'<br/>'+
+                '备注:'+'<br/>'+ place[i].comment;
+            marker.on('click', markerClick);
+    }
+    function markerClick(e) {
+        infoWindow.setContent(e.target.content);
+        infoWindow.open(map, e.target.getPosition());
+    }
+    map.setFitView();
+
+/*    let markers = [];
+    for(let i=0;i<place.length;i+=1){
+        markers.push(new AMap.Marker({
+            position:place[i].coord,
+            content: '<div style="background-color: hsla(0,95%,51%,0.7); height: 15px; width: 15px; border: 1px solid hsl(150,57%,3%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
+            offset: new AMap.Pixel(-15,-15)
+        }))
+    }
+
+    map.plugin(['AMap.ToolBar','AMap.MarkerClusterer'], function() {
+        let toolbar = new AMap.ToolBar({
+            liteStyle:true,//精简模式
+            position:'RB',
+            locate:true,//定位
+            noIpLocate:true//定位失败后使用IP定位
+        });
+        map.addControl(toolbar);//加载工具条
+
+        var cluster = new AMap.MarkerClusterer(
+            map,     // 地图实例
+            markers,    // 海量点组成的数组
+            {
+                gridSize:80
+            });
+        map.addControl(cluster);
+    });*/
+</script>
+

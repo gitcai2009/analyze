@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    mapObj = new AMap.Map('iCenter');
+    mapObj.plugin('AMap.Geolocation', function () {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 5000,          //超过5秒后停止定位，默认：无穷大
+            convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+            buttonOffset: new AMap.Pixel(10, 20)
+        });
+        mapObj.addControl(geolocation);
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    });
+    //解析定位结果
+    function onComplete(data) {
+        const lng = data.position.getLng();
+        const lat = data.position.getLat();
+        const coord = [lng, lat];
+        document.getElementById("coordinate").value = coord;
+        document.getElementById("location").value = "定位成功";
+    }
+    //解析定位错误信息
+    function onError(data) {
+        document.getElementById("location").value = "定位失败";
+    }
+
+    $(document).ready(function(){
+        $("#subject-div1").click(function(){
+            $("#form1").slideDown();
+        });
+        $(".setting-deletes").click(function(){
+            $("#form1").slideUp();
+        });
+
+        $("#subject-div2").click(function(){
+            $("#form2").slideDown();
+        });
+        $(".setting-deletes").click(function(){
+            $("#form2").slideUp();
+        });
+    });
+</script>
+

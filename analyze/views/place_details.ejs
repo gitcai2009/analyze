@@ -1,0 +1,157 @@
+<%- include('header') %>
+
+<div class="now">
+    <ul>
+        <li><a href="/chart">首页</a></li>
+        <li>
+        </li>
+        <li class="now_li">
+            <div class="triangle"></div>
+            <span>详情</span>
+        </li>
+    </ul>
+</div>
+<div class="comment">
+    <!--<div class="triangle_"></div>-->
+    <div class="comment_body">
+        <h2><%= places[0].name %></h2>
+        <div class="comment_body_one">
+            <form name="form_arrears" action="/place/<%= places[0]._id %>/edit-arrears" method="post">
+                <span>欠款:</span>
+                <input type="number" name="arrears" value="<%= places[0].arrears %>"/>
+                <input type="submit" value="修改欠款"/>
+            </form>
+        </div>
+        <div class="comment_body_two">
+            <form name="form_comment" action="/place/<%= places[0]._id %>/edit-comment" method="post">
+                <span>备注:</span>
+                <textarea name="comment"><%= places[0].comment %></textarea >
+                <div class="submit_div">
+                    <input type="submit" value="修改备注" />
+                </div>
+            </form>
+        </div>
+        <div class="comment_bottom">
+            <h3 class="button_delete">删除该放置点</h3>
+        </div>
+    </div>
+</div>
+<div id="form1" class="setting-form">
+    <div class="setting-deletes"><img src="/images/delete.png"></div>
+    <div class="setting-main">
+        <div class="setting-top">
+            <form name="form_sale" class="setting-body" method="post">
+                <h2><%= places[0].name %></h2>
+                <p id="setmachine"></p>
+                <input type="hidden" id="machineId" name="machineId" value="" readonly>
+                <input type="hidden" id="oidInitial" name="oidInitial" value="" readonly>
+                <span>记录数额:</span>
+                <input type="number" name="initial" required="required">
+                <br>
+                <span>损耗金额:</span>
+                <input type="number" name="loss" value="0" required="required" onfocus="if (value =='0'){value =''}" onblur="if (value ==''){value='0'}">
+                <br>
+                <span>礼品金额:</span>
+                <input type="number" name="gift" value="0" required="required" onfocus="if (value =='0'){value =''}" onblur="if (value ==''){value='0'}">
+                <input type="submit" value="添加">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="second_div">
+    <div id="dateSum"></div>
+</div>
+
+<div class="table">
+    <div id="table1">
+        <table class="customers">
+            <caption>该店目前摆放的机器</caption>
+            <tr>
+                <th>机器编号</th>
+                <th>名称</th>
+                <th>记录值</th>
+                <th></th>
+            </tr>
+            <% for(let i = 0;i< machines.length;i++){ if (i%2 == 0){ %>
+                <tr>
+                    <%  }else { %>
+                <tr class="alt">
+                    <% } %>
+                <td><p class="li_one" onclick="formSale('<%= machines[i].machineNo %>','<%= machines[i].initialNo %>','<%= machines[i]._id %>')"><%= machines[i].machineNo %></p></td>
+                <td><%= machines[i].name %></td>
+                <td><%= machines[i].initialNo %></td>
+                <td>
+                    <button class="table_button1" onclick="getfrom(<%= machines[i].machineNo %>)">回收</button>
+                </td>
+            </tr>
+            <% } %>
+            <tr style="background-color: rgba(247,248,240,0.98)">
+                <td colspan="4">
+                    <input style="width: 100px;height: 25px; background: rgba(248,220,198,0.98)" type="button" class="table_button" value="添加">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <div id="table2">
+        <table class="customers">
+            <caption>该店历史摆放机器收入情况</caption>
+            <tr>
+                <th>机器编号</th>
+                <th>名称</th>
+                <th>总收入</th>
+            </tr>
+            <% for(let i = 0;i< historySales.length;i++){ if (i%2 == 0){ %>
+            <tr>
+                <%  }else { %>
+            <tr class="alt">
+                <% } %>
+                <td><%= historySales[i]._id.index %></td>
+                <td><%= historySales[i]._id.name %></td>
+                <td><%= historySales[i].sum %></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+</div>
+
+<div id="win_window" class="win">
+    <div class="window-title">
+        <h2 style="color: #fd2b34;">是否回收!</h2>
+        <p id="title"></p>
+    </div>
+    <form name="form_recycle" action="/place/<%= places[0]._id %>/recycle-machine" class="window-pane" method="get">
+        <input type="hidden" id="machine" name="machineNo" value="" readonly>
+        <input type="submit" value="是"/>
+        <input type="button" class="w-btn" value="否"/>
+    </form>
+</div>
+<div id="win_delete" class="win">
+    <div class="window-title">
+        <h2 style="color: #fd2b34;">! 是否删除</h2>
+    </div>
+    <div class="window-pane">
+        <div class="win-ok">
+            <a href="/place/<%= places[0]._id %>/remove">确定</a>
+        </div>
+        <div class="win-no">
+            <span>取消</span>
+        </div>
+    </div>
+</div>
+<div id="form"  class="area_form">
+    <div class="setting-main">
+        <div class="setting-top">
+            <h1>摆放新机器</h1>
+            <form name="form_put" method="get" action="/place/<%= places[0]._id %>/put-machine">
+                <input placeholder="请填写机器编号" type="text" name="machineNo" value="" required="required"/>
+                <input type="submit" class="submit_one" value="添加">
+                <input type="button" class="button_two" value="取消"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<%- include('components/income') %>
+<%- include('footer') %>

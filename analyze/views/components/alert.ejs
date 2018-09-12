@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    var succ = '<%= success %>';
+    var err = '<%= error %>';
+
+var M = {
+
+}
+
+function tt(success,error) {
+
+    if (success){
+        if(M.dialog11){
+            return  M.dialog.close()
+        }
+        M.dialog1 = jqueryAlert({
+            'content' : succ,
+            'closeTime' : 2000
+        })
+    }
+    if(error){
+        if(M.dialog11){
+            return  M.dialog.close()
+        }
+        M.dialog1 = jqueryAlert({
+            'content' : err,
+            'closeTime' : 2800
+        })
+    }
+}
+
+tt(succ,err)
+
+    var urlstr = location.href;
+    var urlstatus=false;
+    $(".now a").each(function () {
+        if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!='') {
+            $(this).addClass('cur'); urlstatus = true;
+        } else {
+            $(this).removeClass('cur');
+        }
+    });
+    if (!urlstatus) {$(".now a").eq(0).addClass('cur'); }
+
+</script>

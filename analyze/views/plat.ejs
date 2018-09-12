@@ -1,0 +1,79 @@
+<%- include('header') %>
+
+<div class="menu">
+  <div class="menu_top">
+    <div class="icon">
+      <a href="/plat">
+        <img src="/images/home.png" alt="主页">
+        <span>主页</span>
+      </a>
+    </div>
+    <div id="area" class="icon">
+      <a href="#">
+        <img src="/images/menu.png" alt="区域">
+        <span>区域</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="menu_bottom">
+    <div class="icon">
+      <a href="/set">
+        <img src="/images/setting.png" alt="设置">
+        <span>设置</span>
+      </a>
+    </div>
+    <div class="icon">
+      <a href="/signout">
+        <img src="/images/exit.png" alt="退出">
+        <span>退出</span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="menu_area">
+  <div class="menu_area_title">
+    <span>区域</span>
+    <div  class="menu_area_title_icon">
+      <img src="/images/add.png" alt="添加区域">
+    </div>
+  </div>
+  <div class="menu_area_body">
+      <% areas.forEach(function (area){ %>
+      <div class="menu_area_cell">
+        <a href="/plat?areaId=<%= area._id %>"><%= area.areaname %></a>
+      </div>
+      <% }) %>
+  </div>
+</div>
+<div id="form3"  class="area_form">
+  <div class="setting-main">
+    <div class="setting-top">
+      <h1>添加区域</h1>
+      <form name="form1" method="post">
+        <input type="text" name="areaname" placeholder="填写区域名称" required="required">
+        <input type="submit" class="submit_one" value="添加">
+        <input type="button" class="button_two" value="取消"/>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="switch" >
+  <a href="/chart">
+    <img border="0" src="/images/images.png" alt="切换" width="32" height="32">
+  </a>
+</div>
+
+<div id='container'></div>
+<div class="tip">
+  <p>总收入: <%= dates.sale %></p>
+  <p>坏账: <%= -dates.loss %></p>
+  <p>礼品: <%= -dates.gift %></p>
+  <p>放置点: <%= places.length %></p>
+  <% if (machines){ %>
+    <p>机器: <%= machines[0] %> / <%= machines[1] %></p>
+  <% }%>
+</div>
+<%- include('components/platJS') %>
+<%- include('footer') %>

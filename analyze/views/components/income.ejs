@@ -1,0 +1,94 @@
+<script type="text/javascript">
+    var dateSale = JSON.parse('<%- JSON.stringify(dateSale) %>');
+
+    var date = dateSale.map(function (item) {
+        return item._id
+    })
+    var value = dateSale.map(function (item) {
+        return item.saleSum
+    })
+
+    function map1(ec) {
+        let myChart = ec.init(document.getElementById('dateSum'));
+
+        option = {
+            visualMap: {
+                show: false,
+                type: 'continuous',
+                seriesIndex: 0,
+                min: 0,
+                max: 400
+            },
+            title: {
+                left: 'center',
+                text: '历史收入情况'
+            },
+            tooltip: {
+                trigger: 'axi0s1'
+            },
+            xAxis: {
+                data: date
+            },
+            yAxis: {
+                splitLine: {show: false}
+            },
+            series: [{
+                type: 'line',
+                showSymbol: false,
+                data: value
+            }]
+        };
+
+        myChart.setOption(option);
+    }
+
+    map1(echarts);
+
+    $(document).ready(function() {
+        $(".table_button").click(function () {
+            $(".area_form").slideDown();
+        });
+        $(".button_two").click(function () {
+            $(".area_form").slideUp();
+        });
+
+        $(".table_button1").click(function () {
+            $("#win_window").slideDown();
+        });
+        $(".w-btn").click(function () {
+            $("#win_window").slideUp();
+        });
+
+        $(".button_delete").click(function () {
+            $("#win_delete").slideDown();
+        });
+        $(".win-no").click(function () {
+            $("#win_delete").slideUp();
+        });
+
+        $(".li_one").click(function(){
+            $("#form1").slideDown();
+        });
+        $(".setting-deletes").click(function(){
+            $("#form1").slideUp();
+        });
+
+        $(".now_li").click(function () {
+            $(".comment").toggle();
+            $(".triangle").toggleClass("click_triangle");
+            $(".now_li").toggleClass("click_li");
+        });
+    });
+
+    function getfrom(index) {
+        document.getElementById("machine").value = index;
+        document.getElementById("title").innerHTML = '编号:'+ index;
+    }
+
+    function formSale(machineNo,initial,machineId) {
+        document.getElementById("machineId").value = machineId;
+        document.getElementById("oidInitial").value = initial;
+        document.getElementById("setmachine").innerHTML = '编号:'+ machineNo;
+    }
+
+</script>

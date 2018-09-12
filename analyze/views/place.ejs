@@ -1,0 +1,105 @@
+<%- include('header') %>
+
+<div class="menu">
+    <div class="menu_top">
+        <div class="icon">
+            <a href="/chart">
+                <img src="/images/home.png" alt="主页">
+                <span>主页</span>
+            </a>
+        </div>
+        <div id="area" class="icon">
+            <a href="#">
+                <img src="/images/menu.png" alt="区域">
+                <span>区域</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="menu_bottom">
+        <div class="icon">
+            <a href="/set">
+                <img src="/images/setting.png" alt="设置">
+                <span>设置</span>
+            </a>
+        </div>
+        <div class="icon">
+            <a href="/signout">
+                <img src="/images/exit.png" alt="退出">
+                <span>退出</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="menu_area">
+    <div class="menu_area_title">
+        <span>区域</span>
+        <div  class="menu_area_title_icon">
+            <img src="/images/add.png" alt="添加区域">
+        </div>
+    </div>
+    <div class="menu_area_body">
+        <% areas.forEach(function (area){ %>
+        <div class="menu_area_cell">
+            <a href="/chart/place?areaId=<%= area._id %>"><%= area.areaname %></a>
+        </div>
+        <% }) %>
+    </div>
+</div>
+
+<div id="form3"  class="area_form">
+    <div class="setting-main">
+        <div class="setting-top">
+            <h1>添加区域</h1>
+            <form name="form3" method="post" action="/plat">
+                <input type="text" name="areaname" placeholder="填写区域名称" required="required">
+                <input type="submit" class="submit_one" value="添加">
+                <input type="button" class="button_two" value="取消"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="getplace">
+    <div class="getplace_top">
+        <form name="getplace_form" action="/place/<%= areaId %>/place-details/" method="get" class="getplace_top_form">
+            <input type="hidden" id="placeId" name="placeId">
+            <input class="getplace_browsers" list="browsers" id="placeName" placeholder="请输入您要搜索的名称...">
+            <datalist id="browsers">
+                <% places.forEach(function (place){ %>
+                <option value="<%= place.name %>">
+                <% }) %>
+            </datalist>
+            <input type="submit" id="button" onclick="seturl()" value="">
+            <img src="/images/seek.png">
+        </form>
+    </div>
+    <div class="getplace_body">
+        <ul>
+            <% places.forEach(function (place){ %>
+            <li>
+                <a href="/place/<%= areaId %>/place-details?placeId=<%= place._id %>"><%= place.name %></a>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var places = JSON.parse('<%- JSON.stringify(places) %>');
+    function seturl() {
+        var name = document.getElementById("placeName").value;
+        if (name == null || name == ""){
+            window.location.reload();
+        }else{
+            var newplace = places.filter(function (item) {
+                return item.name == name;
+            });
+            var pid = newplace[0]._id;
+            document.getElementById("placeId").value = pid;
+        }
+    }
+
+</script>
+<%- include('footer') %>
