@@ -1,5 +1,5 @@
 # analyze
-这是一个简单模仿网页版微信的web小项目---基于node.js和express
+一个图表项目---基于node.js和express
 ## 开发环境
 - Node.js : '8.9.1'
 - Express : '4.16.0'
