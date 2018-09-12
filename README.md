@@ -18,22 +18,22 @@
 - ejs
 ## 页面展示
 ### 登录页
-![](./analyze/public/images/1.PNG)
+![](./analyze/public/images/10.PNG)
 ### 登录后页面
-![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/2.png)
+![](./analyze/public/images/2.PNG)
 ### 选择具体区域
-![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/3.png)
+![](./analyze/public/images/3.PNG)
 ### 点击设置键跳转到设置页
-![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/4.png)
+![](./analyze/public/images/4.PNG)
 ### 选择具体设置对象
-![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/5.png)
+![](./analyze/public/images/5.PNG)
 ### 点击切换键后跳转到图表页
-![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/1.png)
+![](./analyze/public/images/1.PNG)
 ### 图表页选择区域后跳转到区域内各放置点页
-![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/6.png)
+![](./analyze/public/images/6.PNG)
 ### 放置点详情页
-![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/7.png)
+![](./analyze/public/images/7.PNG)
 ### 查看点详情
-![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/8.png)
+![](./analyze/public/images/8.PNG)
 ### 添加收入
-![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/9.png)
+![](./analyze/public/images/9.PNG)
