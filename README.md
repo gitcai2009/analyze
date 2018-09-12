@@ -14,6 +14,26 @@
 > - package.json: 存储项目名、描述、作者、依赖等等信息
 >   
 以上遵循了 MVC（模型(model)－视图(view)－控制器(controller/route)） 的开发模式。
+## 模板引擎
+- ejs
 ## 页面展示
-[成品页面展示请点击这里](https://github.com/12vv/wechat_demo/blob/master/about/page.md)
-
+### 登录页
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/10.png)
+### 登录后页面
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/2.png)
+### 选择具体区域
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/3.png)
+### 点击设置键跳转到设置页
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/4.png)
+### 选择具体设置对象
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/5.png)
+### 点击切换键后跳转到图表页
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/1.png)
+### 图表页选择区域后跳转到区域内各放置点页
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/6.png)
+### 放置点详情页
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/7.png)
+### 查看点详情
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/8.png)
+### 添加收入
+![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/9.png)
