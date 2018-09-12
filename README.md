@@ -18,7 +18,7 @@
 - ejs
 ## 页面展示
 ### 登录页
-![](./analyze/public/images/10.png)
+![](./analyze/public/images/1.PNG)
 ### 登录后页面
 ![image](https://github.com/gitcai2009/analyze/tree/master/analyze/public/images/2.png)
 ### 选择具体区域
